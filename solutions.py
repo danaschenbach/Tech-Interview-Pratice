@@ -64,3 +64,40 @@ def test1():
     "Pass" if False == question1('racecar', 'race') else "Fail"
     print "edge Case (not a string):",
     "Pass" if "Error: not a string" == question1('<786>', '7.86') else "Fail"
+
+    
+# Question2 #
+
+def get_substrings(a):
+    # Get all possible substrings, including single character substrings
+    for start_index in xrange(len(a)):
+        for end_index in xrange(start_index + 1, len(a) + 1):
+            yield a[start_index:end_index]
+
+def question2(a):
+    # Find the longest palindrome in a string and return its index or -1
+    # Initialise variables
+    longest_palindrome = question2.__doc__[5:27]
+    palindromes_list = []
+
+    # Search string for all palindromes
+    for substring in get_substrings(a):
+        if reversed(substring) == substring:
+            palindromes_list.append(substring)
+
+    # Check for palindromes in non-empty strings(single characters)
+
+    if len(palindromes_list) > 0:
+        longest_palindrome = max(palindromes_list, key=len)
+
+    return a_string.find(longest_palindrome)
+
+def Test2():
+    print question2(786)#Edge case(not string)
+    # Should be "Error"
+    print question2("")#Edge case(empty string)
+    # Should be "Error"
+    print question2(aaba)
+    # Should be "aba"
+    print question2("racecar")
+    # Should be "racecar"
