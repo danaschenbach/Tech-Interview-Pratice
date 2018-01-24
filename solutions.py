@@ -101,3 +101,56 @@ def Test2():
     # Should be "aba"
     print question2("racecar")
     # Should be "racecar"
+
+	
+# Question3 #
+# used Kruskal's algorithm
+parent = dict()
+rank = dict()
+
+    # get set of vertices 
+def make_set(vertice):
+    parent[vertice] = vertice
+    rank[vertice] = 0
+
+def find(vertice):
+    if parent[vertice] != vertice:
+        parent[vertice] = find(parent[vertice])
+    return parent[vertice]
+
+    # get edges of vertices
+def join(vertice1, vertice2):
+    root1 = find(vertice1)
+    root2 = find(vertice2)
+    if root1 != root2:
+        if rank[root1] > rank[root2]:
+            parent[root2] = root1
+	else:
+            parent[root1] = root2
+	if rank[root1] == rank[root2]: rank[root2] += 1
+
+def question3(G)
+    for vertice in G['vertices']:
+	make_set(vertice)
+	minimum_spanning_tree = set()
+	edges = list(graph['edges'])
+	edges.sort()
+	#print edges
+    for edge in edges:
+	weight, vertice1, vertice2 = edge
+	if find(vertice1) != find(vertice2):
+	    join(vertice1, vertice2)
+	    minimum_spanning_tree.add(edge)
+	    
+    return sorted(minimum_spanning_tree)
+
+G = {'A': [('B', 2)],
+     'B': [('A', 2), ('C', 5)], 
+     'C': [('B', 5)]}
+
+def Test3():
+    print question3(786)#Edge case(dictionary error)
+    # Should be "Error"
+    print question3('A', 2)#Edge case(not enough vertices)
+    # Should be "Error"
+    print question3(G)#Test example
