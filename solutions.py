@@ -71,7 +71,7 @@ def question1(s, t):
         if compare(counts_of_t, counts_of_s.copy()):
             return True
 
-    # no matching anagram of (t) in substring of (s)
+    # if no matching anagram of (t) in substring of (s)
     return False
 
 def test1():
@@ -112,13 +112,13 @@ def question2(a):
     right = 1
     for i in xrange(len(a)-1):
     
-    # check palindrome centered at (i)
+    # check for palindrome centered at (i)
         l, r = longest_palindrome(a, i, i)
         if r-l-1 > right - left:
             right = r
             left = l+1
 
-    # check palindrome centered between (i) and (i)+1
+    # check for palindrome centered between (i) and (i)+1
         l, r = longest_palindrome(a, i, i+1)
         if r-l-1 > right - left:
             right = r
