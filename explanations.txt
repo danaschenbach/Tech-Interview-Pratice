@@ -4,12 +4,12 @@ I would first start by checking for the possability of an anagram by verifing th
 are strings and that (t) isn't larger than (s). Then compile character counts of (t) 
 and check against possible substrings of (s). If any anagram of (t) is substring of (s)
 we get True, else False. Looping through all possible substrings will take, at worst,
-O(len(s)). Since number of characters are bounded the space complexity should be O(1).
+O(len(s)). Since number of characters are bounded, the space complexity should be O(1).
 
 
 Question 2:
 
-First start by checking that you can make a plaindrome by verifing that (a) is a string
+First start by checking that you can make a palindrome by verifing that (a) is a string
 and has more than 1 character. Check for all centers then check for palindrome at each center.
 Then return the longest one. Checking all possible combinations should only take O(n^2) time.
 Since we only store the left and right index of longest palindromic substring, the space
