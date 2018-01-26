@@ -1,0 +1,43 @@
+Question 1:
+
+I would first start by checking for the possability of an anagram by verifing that they
+are strings and that (t) isn't larger than (s). Then compile character counts of (t) 
+and check against possible substrings of (s). If any anagram of (t) is substring of (s)
+we get True, else False. Looping through all possible substrings will take, at worst,
+O(len(s)). Since number of characters are bounded the space complexity should be O(1).
+
+
+Question 2:
+
+First start by checking that you can make a plaindrome by verifing that (a) is a string
+and has more than 1 character. Check for all centers then check for palindrome at each center.
+Then return the longest one. Checking all possible combinations should only take O(n^2) time.
+Since we only store the left and right index of longest palindromic substring, the space
+complexity is O(1).
+
+
+Question 3:
+
+I decided to use Kruskal's algorithm since we were using a sparse graph. First I need a set of
+edges that I can sort by weight. Then loop through the edges finding their indices and merge
+the sets. Finaly, convert the edges back to required output graph. Generating the edges will take
+O(E) time and space. Sorting edges will take O(Elog(E)) time and O(E) space. Merging sets takes,
+at worst, O(E*V) time and O(V) space. Converting back to a graph will take O(E) time and O(V) space.
+The overall time complexity should be O(E*log(V)).
+
+
+Question 4:
+
+The lca will be the first node with a value between n1 and n2. So first we go through the tree from
+top-down. Then at each node check if it is greater than n1 and n2, if it is gor right. If it's less
+than both, go left, or else the node is the lca. In the worst case we will go through the whole tree
+which makes the time complexity O(log(n)). Since we only keep track of the current node, the space
+complexity is O(1).
+
+
+Question 5:
+
+One way to find the element (m) from the end is to go through the list twice.  The first time is to get
+the length and the second is to get (m)th element from the end. Time complexity will be O(n) even though
+we go through twice. Since only the length is stored the space complexity is O(1). Even though we also
+check for the list being circular, it has no effect on overall time or space complexity.
