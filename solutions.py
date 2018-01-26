@@ -1,8 +1,7 @@
 # Question1 #
 
-def compare(set1, set2):
-
     # check if set1 and set2 are equal
+def compare(set1, set2):
     for i in set1:
         if i in set2:
             if set1[i] == set2[i]:
@@ -18,14 +17,14 @@ def compare(set1, set2):
 
 def question1(s, t):
 
-    # make sure (s) and (t) are strings, check each separately for better error results
+    # make sure (s) and (t) are strings, check each separately for clear error results
     if type(s) != str:
         return "Error: s not string!"
 
     if type(t) != str:
         return "Error: t not string!"
 
-    # make sure (s) is greater than (t)
+    # make sure (s) > (t)
     if len(s) == 0 or len(s) < len(t):
         return False
 
@@ -56,19 +55,19 @@ def question1(s, t):
     # compare the rest of sets
     for i in xrange(len(t), len(s)):
 
-        # add new character
+    # add new character
         if s[i] in counts_of_s:
             counts_of_s[s[i]] += 1
         else:
             counts_of_s[s[i]] = 1
 
-        # remove old character
+    # remove old character
         x = i - len(t)
         counts_of_s[s[x]] -= 1
         if counts_of_s[s[x]] == 0:
             counts_of_s.pop(s[x])
  
-        # compare if they are anagrams
+    # compare if they are anagrams
         if compare(counts_of_t, counts_of_s.copy()):
             return True
 
@@ -77,21 +76,17 @@ def question1(s, t):
 
 def test1():
     print "Test 1"
-    print "Example test (udacity, ad):", "Pass" if question1("udacity", "ad") == True else "Fail"
-    print "Edge case (not a string):", "Pass" if question1(123, 1.23) == "Error: s not string!" else "Fail"
-    print "Edge case (t > s):", "Pass" if question1("ad", "udacity") == False else "Fail"
-    print "Test (s = t):", "Pass" if question1("abcd", "abcd") == True else "Fail"
-    print "Test (no matching substrings):", "Pass" if question1("abeeeeeeecd", "abcd") == False else "Fail"
+    print "Edge case1 (not a string):", "Pass" if question1(123, 1.23) == "Error: s not string" else "Fail"
+    print "Edge case2 (t > s):", "Pass" if question1("ad", "udacity") == False else "Fail"
+    print "Test case1 (udacity, ad):", "Pass" if question1("udacity", "ad") == True else "Fail"
+    print "Test case2 (s = t):", "Pass" if question1("abcd", "abcd") == True else "Fail"
+    print "Test case3 (no matching substrings):", "Pass" if question1("abcd", "efgh") == False else "Fail"
 
 
 # Question 2 #
 
+    # find the longest palindrome if centered at idx
 def longest_palindrome(a, left_idx, right_idx):
-
-    # find the longest palindrome if centered at idx.
-    # idx can be in between elements.
-    # left_idx and right_idx are the left and the right element of idx
-
     l = left_idx
     r = right_idx
     while l >= 0 and r < len(a):
@@ -106,7 +101,7 @@ def question2(a):
 
     # make sure (a) is a string
     if type(a) != str:
-        return "Error: a not string!"
+        return "Error: a not string"
 
     # make sure (a) has at least 2 characters
     if len(a) < 2:
@@ -131,25 +126,24 @@ def question2(a):
     return a[left:right]
 
 def test2():
-    print "\nTesting 2"
-    print "Edge case (not string):", "Pass" if question2(123)== "Error: a not string!" else "Fail"
-    print "Edge case (empty string):", "Pass" if question2("") == "" else "Fail"
-    print "Case (a = \"a\"):", "Pass" if "a" == question2("a") else "Fail"
-    print "Case (a = \"aa\"):", "Pass" if "aa" == question2("aa") else "Fail"
-    print "Case (a = \"racecar\"):", "Pass" if question2("racecar") == "racecar" else "Fail"
+    print "\nTest 2"
+    print "Edge case1 (not string):", "Pass" if question2(123)== "Error: a not string" else "Fail"
+    print "Edge case2 (empty string):", "Pass" if question2("") == "" else "Fail"
+    print "Test case1 (a = \"a\"):", "Pass" if question2("a") == "a" else "Fail"
+    print "Test case2 (a = \"bb\"):", "Pass" if question2("bb") == "bb" else "Fail"
+    print "Test case3 (a = \"racecar\"):", "Pass" if question2("racecar") == "racecar" else "Fail"
 
 
 # Question3 #
 
+    # Using Kruskal's algorithm
 def question3(G):
 
-    # Using Kruskal's algorithm
-
-    # make sure G is dictionary
+    # make sure (G) is dictionary
     if type(G) != dict:
         return "Error: G is not dictionary"
 
-    # make sure G has more than one node
+    # make sure (G) has more than one node
     if len(G) < 2:
         return "Error: not enough vertices to form edges"
 
@@ -180,7 +174,7 @@ def question3(G):
                 i2 = x
 
     # store union in smaller and pop the larger index
-    # also store edge in output_edges
+    # and store edge in output_edges
         if i1 < i2:
             verts[i1] = set.union(verts[i1], verts[i2])
             verts.pop(i2)
@@ -190,7 +184,7 @@ def question3(G):
             verts.pop(i1)
             output_edges.append(i)
 
-    # terminate early when all vertices are in graph
+    # terminate when all vertices are in graph
         if len(verts) == 1:
             break
 
@@ -214,9 +208,9 @@ def test3():
          'B': [('A', 2), ('C', 5)],
          'C': [('B', 5)]}
     print "\nTest 3"
-    print "Edge case (not dictionary):", "Pass" if question3(123) == "Error: G is not dictionary"  else "Fail"
-    print "Edge case (empty dictionary):", "Pass" if question3({}) == "Error: not enough vertices" else "Fail"
-    print "Example test:", "Pass" if question3(G) == G else "Fail"
+    print "Edge case1 (not dictionary):", "Pass" if question3(123) == "Error: G is not dictionary"  else "Fail"
+    print "Edge case2 (empty dictionary):", "Pass" if question3({}) == "Error: not enough vertices" else "Fail"
+    print "Test case1:", "Pass" if question3(G) == G else "Fail"
     G = {'A': [('B', 7), ('D', 5)],
          'B': [('A', 7), ('C', 8), ('D', 9), ('E', 7)],
          'C': [('B', 8), ('E', 5)],
@@ -224,14 +218,6 @@ def test3():
          'E': [('B', 7), ('C', 5), ('D', 15), ('F', 8), ('G', 9)],
          'F': [('D', 6), ('E', 8), ('G', 11)],
          'G': [('E', 9), ('F', 11)]}
-    H = {'A': [('D', 5), ('B', 7)],
-         'B': [('A', 7), ('E', 7)],
-         'C': [('E', 5)],
-         'D': [('A', 5), ('F', 6)],
-         'E': [('C', 5), ('B', 7), ('G', 9)],
-         'F': [('D', 6)],
-         'G': [('E', 9)]}
-    print "Case (Wikipedia example):", "Pass" if H == question3(G) else "Fail"
 
 
 # Question4 #
@@ -326,13 +312,11 @@ def test4():
     r = Tree_Node(8)
     r.left, r.right = n4, n12
 
-    print "\nTesting 4"
-    print "Edge case (r not Tree_Node):", "Pass" if question4(123, 111, 111) == "Error: r not Tree_Node" else "Fail"
-    print "Edge case (n1 not in the tree):", "Pass" if question4(r, -1, 5) =="Error: n1 not in the tree"  else "Fail"
-    print "Case (n1 = 8 and n2 = 1):", "Pass" if question4(r, 8, 1) == 8 else "Fail" 
-    print "Case (n1 = 1 and n2 = 3):", "Pass" if question4(r, 1, 3) == 2 else "Fail"
-    print "Case (n1 = 9 and n2 = 15):", "Pass" if question4(r, 9, 15) == 12 else "Fail"
-    print "Case (n1 = 1 and n2 = 11):", "Pass" if question4(r, 1, 11) == 8 else "Fail"
+    print "\nTest 4"
+    print "Edge case1 (r not Tree_Node):", "Pass" if question4(123, 111, 111) == "Error: r not Tree_Node" else "Fail"
+    print "Edge case2 (n1 not in the tree):", "Pass" if question4(r, -1, 5) == "Error: n1 not in tree"  else "Fail"
+    print "Test case1 (n1 = 8 and n2 = 1):", "Pass" if question4(r, 8, 1) == 8 else "Fail"
+    print "Test case2 (n1 = 9 and n2 = 15):", "Pass" if question4(r, 9, 15) == 12 else "Fail"
 
 
 # Question 5 #
@@ -343,7 +327,6 @@ class Node(object):
         self.next = None
 
     # get the length of ll checking whether the linked list is circular
-    # return -1 if the linked list is circular
 def get_length(ll):
     if ll.next == None:
         return 1
@@ -401,10 +384,10 @@ def test5():
     n5.next = n1
     
     print "\nTest 5"
-    print "Edge case (ll not Node):", "Pass" if question5(123, 111) == "Error: ll not a Node" else "Fail"
-    print "Edge case (m > length of ll):", "Pass" if question5(n1, 6) == "Error: m > length of ll" else "Fail"
-    print "Case (ll = n1 and m = 3):", "Pass" if question5(n1, 3) == 3 else "Fail" 
-    print "Case (circular linked list):", "Pass" if question5(n1, 3) == "Error: circular linked list" else "Fail" 
+    print "Edge case1 (ll not Node):", "Pass" if question5(123, 111) == "Error: ll not a Node" else "Fail"
+    print "Edge case2 (m > length of ll):", "Pass" if question5(n1, 6) == "Error: m > length of ll" else "Fail"
+    print "Test case1 (ll = n1 and m = 3):", "Pass" if question5(n1, 3) == 3 else "Fail" 
+    print "Test case2 (circular linked list):", "Pass" if question5(n1, 3) == "Error: circular linked list" else "Fail" 
 
 test1()
 test2()
